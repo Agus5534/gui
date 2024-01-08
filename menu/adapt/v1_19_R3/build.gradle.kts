@@ -17,5 +17,5 @@ tasks {
 
 dependencies {
     api(project(":gui-menu-api"))
-    paperDevBundle("1.19.2-R0.1-SNAPSHOT")
+    paperDevBundle("1.19.4-R0.1-SNAPSHOT")
 }
