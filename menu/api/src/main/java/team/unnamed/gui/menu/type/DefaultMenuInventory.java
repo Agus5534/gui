@@ -1,5 +1,6 @@
 package team.unnamed.gui.menu.type;
 
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -7,6 +8,7 @@ import team.unnamed.gui.menu.item.ItemClickable;
 import team.unnamed.gui.menu.util.MenuUtil;
 
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 public class DefaultMenuInventory implements MenuInventory {
@@ -14,15 +16,15 @@ public class DefaultMenuInventory implements MenuInventory {
     protected final String title;
     protected final int slots;
     protected final List<ItemClickable> items;
-    protected final Predicate<Inventory> openAction;
-    protected final Predicate<Inventory> closeAction;
+    protected final Consumer<Player> openAction;
+    protected final Consumer<Player> closeAction;
     protected final boolean canIntroduceItems;
 
     protected DefaultMenuInventory(
             String title, int slots,
             List<ItemClickable> items,
-            Predicate<Inventory> openAction,
-            Predicate<Inventory> closeAction,
+            Consumer<Player> openAction,
+            Consumer<Player> closeAction,
             boolean canIntroduceItems
     ) {
         this.title = title;
@@ -68,13 +70,13 @@ public class DefaultMenuInventory implements MenuInventory {
 
     @Nullable
     @Override
-    public Predicate<Inventory> getOpenAction() {
+    public Consumer<Player> getOpenAction() {
         return openAction;
     }
 
     @Nullable
     @Override
-    public Predicate<Inventory> getCloseAction() {
+    public Consumer<Player> getCloseAction() {
         return closeAction;
     }
 

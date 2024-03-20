@@ -1,11 +1,13 @@
 package team.unnamed.gui.menu.type;
 
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import team.unnamed.gui.menu.item.ItemClickable;
 
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 public interface MenuInventory {
@@ -48,9 +50,9 @@ public interface MenuInventory {
 
     void removeItem(int slot);
 
-    @Nullable Predicate<Inventory> getOpenAction();
+    @Nullable Consumer<Player> getOpenAction();
 
-    @Nullable Predicate<Inventory> getCloseAction();
+    @Nullable Consumer<Player> getCloseAction();
 
     boolean canIntroduceItems();
 

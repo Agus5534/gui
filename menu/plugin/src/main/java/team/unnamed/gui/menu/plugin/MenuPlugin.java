@@ -67,14 +67,11 @@ public class MenuPlugin extends JavaPlugin {
                                         return true;
                                     })
                                     .build())
-                            .openAction(inventory -> {
+                            .openAction(p -> {
                                 player.sendMessage("Opening...");
-                                return false;
                             })
-                            .closeAction(inventory -> {
+                            .closeAction(p -> {
                                 player.sendMessage("Closing...");
-
-                                return false;
                             })
                             .build());
                     break;

@@ -1,11 +1,13 @@
 package team.unnamed.gui.menu.type;
 
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import team.unnamed.gui.menu.item.ItemClickable;
 import team.unnamed.gui.menu.util.MenuUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 import static team.unnamed.validate.Validate.isNotNull;
@@ -19,8 +21,8 @@ abstract class MenuInventoryBuilderLayout<T extends MenuInventoryBuilder>
     private final int rows;
 
     protected List<ItemClickable> items;
-    protected Predicate<Inventory> openAction;
-    protected Predicate<Inventory> closeAction;
+    protected Consumer<Player> openAction;
+    protected Consumer<Player> closeAction;
     protected boolean canIntroduceItems;
 
     protected MenuInventoryBuilderLayout(String title) {
@@ -119,7 +121,7 @@ abstract class MenuInventoryBuilderLayout<T extends MenuInventoryBuilder>
     }
 
     @Override
-    public T openAction(Predicate<Inventory> action) {
+    public T openAction(Consumer<Player> action) {
         isNotNull(action, "Open action cannot be null.");
         this.openAction = action;
 
@@ -127,7 +129,7 @@ abstract class MenuInventoryBuilderLayout<T extends MenuInventoryBuilder>
     }
 
     @Override
-    public T closeAction(Predicate<Inventory> action) {
+    public T closeAction(Consumer<Player> action) {
         isNotNull(action, "Close action cannot be null.");
         this.closeAction = action;
 

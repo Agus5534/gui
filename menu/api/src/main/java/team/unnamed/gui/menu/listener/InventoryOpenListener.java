@@ -1,5 +1,7 @@
 package team.unnamed.gui.menu.listener;
 
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryOpenEvent;
@@ -8,6 +10,7 @@ import team.unnamed.gui.menu.adapt.MenuInventoryWrapper;
 import team.unnamed.gui.menu.type.MenuInventory;
 import team.unnamed.gui.menu.util.MenuUtil;
 
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 public class InventoryOpenListener
@@ -20,12 +23,10 @@ public class InventoryOpenListener
         if (MenuUtil.isCustomMenu(inventory)) {
             MenuInventoryWrapper wrapper = MenuUtil.getAsWrapper(inventory);
             MenuInventory menuInventory = wrapper.getMenuInventory();
-            Predicate<Inventory> action = menuInventory.getOpenAction();
+            Consumer<Player> action = menuInventory.getOpenAction();
 
-            if (action != null) {
-                if (action.test(inventory)) {
-                    event.setCancelled(true);
-                }
+            if(action != null) {
+                action.accept((Player) event.getPlayer());
             }
         }
     }

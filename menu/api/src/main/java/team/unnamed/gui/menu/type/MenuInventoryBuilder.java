@@ -1,9 +1,11 @@
 package team.unnamed.gui.menu.type;
 
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import team.unnamed.gui.menu.item.ItemClickable;
 
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 public interface MenuInventoryBuilder {
@@ -22,9 +24,9 @@ public interface MenuInventoryBuilder {
 
     MenuInventoryBuilder item(ItemClickable item);
 
-    MenuInventoryBuilder openAction(Predicate<Inventory> action);
+    MenuInventoryBuilder openAction(Consumer<Player> action);
 
-    MenuInventoryBuilder closeAction(Predicate<Inventory> action);
+    MenuInventoryBuilder closeAction(Consumer<Player> action);
 
     MenuInventoryBuilder introduceItems(boolean canIntroduceItems);
 

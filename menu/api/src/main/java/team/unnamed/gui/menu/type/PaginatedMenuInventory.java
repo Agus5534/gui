@@ -1,10 +1,12 @@
 package team.unnamed.gui.menu.type;
 
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import team.unnamed.gui.menu.item.ItemClickable;
 
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -28,8 +30,8 @@ public class PaginatedMenuInventory<E> extends DefaultMenuInventory {
     protected PaginatedMenuInventory(
             String title, int slots,
             List<ItemClickable> items,
-            Predicate<Inventory> openAction,
-            Predicate<Inventory> closeAction,
+            Consumer<Player> openAction,
+            Consumer<Player> closeAction,
             boolean canIntroduceItems,
             int entitySlotFrom, int availableEntitySlots,
             List<Integer> availableSlots, List<E> entities,
