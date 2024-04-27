@@ -1,25 +1,70 @@
 package team.unnamed.gui.menu.util;
 
+import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.jetbrains.annotations.NotNull;
-import team.unnamed.bukkit.ServerVersion;
 import team.unnamed.gui.menu.adapt.MenuInventoryWrapper;
 import team.unnamed.gui.menu.item.ItemClickable;
 import team.unnamed.gui.menu.type.MenuInventory;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
 import java.util.List;
 
 public final class MenuUtil {
 
     private static final Constructor<?> WRAPPER_CONSTRUCTOR;
 
+
+    private enum VersionWrapper {
+        V1_17("1.17", "v1_17"),
+        V1_17_1("1.17.1", "v1_17"),
+        V1_18("1.18", "v1_18"),
+        V1_18_1("1.18.1", "v1_18"),
+        V1_18_2("1.18.2", "v1_18_2"),
+        V1_19("1.19", "v1_19"),
+        V1_19_1("1.19.1", "v1_19"),
+        V1_19_2("1.19.2", "v1_19"),
+        V1_19_3("1.19.3", "v1_19_2"),
+        V1_19_4("1.19.4", "v1_19_3"),
+        V1_20("1.20", "v1_20"),
+        V1_20_1("1.20.1", "v1_20"),
+        V1_20_2("1.20.2", "v1_20_2"),
+        V1_20_3("1.20.3", "v1_20_3"),
+        V1_20_4("1.20.4", "v1_20_3"),
+        V1_20_5("1.20.5", "v1_20_4"),
+        V1_20_6("1.20.6", "v1_20_4");
+
+        private String version;
+        private String packageName;
+
+         VersionWrapper(String version, String packageName) {
+            this.version = version;
+            this.packageName = packageName;
+        }
+
+        public String getPackageName() {
+            return packageName;
+        }
+
+        public String getVersion() {
+            return version;
+        }
+
+        public static VersionWrapper getByVersion(String version) {
+             var list = Arrays.stream(VersionWrapper.values())
+                     .filter(versionWrapper -> versionWrapper.version.equalsIgnoreCase(version))
+                     .toList();
+
+             return list.get(0);
+        }
+    }
     static {
         try {
             WRAPPER_CONSTRUCTOR = Class.forName(
-                    "team.unnamed.gui.menu." + ServerVersion.CURRENT
+                    "team.unnamed.gui.menu." + VersionWrapper.getByVersion(Bukkit.getServer().getMinecraftVersion()).getPackageName()
                             + ".MenuInventoryWrapperImpl"
             ).getConstructor(InventoryHolder.class, MenuInventory.class);
         } catch (ClassNotFoundException | NoSuchMethodException e) {

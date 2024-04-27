@@ -4,6 +4,7 @@ pluginManagement {
     repositories {
         gradlePluginPortal()
         maven("https://papermc.io/repo/repository/maven-public/")
+
     }
 }
 
@@ -18,7 +19,7 @@ arrayOf("api", "plugin").forEach {
 }
 
 // menu adapters
-arrayOf("1_8_R3", "1_16_R3", "1_17_R1", "1_18_R2", "1_19_R1", "1_19_R2", "1_19_R3", "1_20_R1", "1_20_R2", "1_20_R3").forEach {
+arrayOf("1_17", "1_18", "1_18_2", "1_19", "1_19_2", "1_19_3", "1_20", "1_20_2", "1_20_3", "1_20_4").forEach {
     includePrefixed("menu:adapt:v$it")
 }
 
