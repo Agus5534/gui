@@ -1,6 +1,5 @@
 package team.unnamed.gui.menu.v1_20_4;
 
-import org.bukkit.craftbukkit.v1_20_R3.inventory.CraftInventoryCustom;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.jetbrains.annotations.NotNull;
@@ -27,9 +26,9 @@ public class MenuInventoryWrapperImpl implements MenuInventoryWrapper {
             var craftInventoryCustom = Class.forName("org.bukkit.craftbukkit.inventory.CraftInventoryCustom");
 
             var constructor = craftInventoryCustom.getDeclaredConstructor(
-                    owner.getClass(),
+                    InventoryHolder.class,
                     int.class,
-                    menuInventory.getTitle().getClass());
+                    String.class);
 
             return (Inventory) constructor.newInstance(owner, menuInventory.getSlots(), menuInventory.getTitle());
         } catch (Exception e) {
