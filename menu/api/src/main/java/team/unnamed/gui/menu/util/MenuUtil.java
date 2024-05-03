@@ -83,6 +83,10 @@ public final class MenuUtil {
         }
     }
 
+    public static final @NotNull Byte versionNumber =  Byte.parseByte(Bukkit.getMinecraftVersion().split("\\.")[1]);
+    public static final @NotNull Byte patchNumber = Bukkit.getMinecraftVersion().split("\\.").length < 3 ? 0 :  Byte.parseByte(Bukkit.getMinecraftVersion().split("\\.")[2]);
+
+
     public static @NotNull Inventory parseToInventory(MenuInventory menuInventory) {
         try {
             MenuInventoryWrapper wrapper
