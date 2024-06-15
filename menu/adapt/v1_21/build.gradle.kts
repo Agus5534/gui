@@ -8,6 +8,7 @@ java {
         languageVersion.set(JavaLanguageVersion.of(21))
     }
 }
+
 tasks {
     assemble {
         dependsOn(reobfJar)
@@ -16,5 +17,5 @@ tasks {
 
 dependencies {
     api(project(":gui-menu-api"))
-    paperDevBundle("1.20.5-R0.1-SNAPSHOT")
+    paperDevBundle("1.21-R0.1-SNAPSHOT")
 }
