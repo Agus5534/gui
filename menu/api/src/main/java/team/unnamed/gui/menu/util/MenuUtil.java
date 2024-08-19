@@ -16,7 +16,7 @@ import java.util.List;
 public final class MenuUtil {
 
     private static final Constructor<?> WRAPPER_CONSTRUCTOR;
-
+    private static final VersionWrapper LATEST = VersionWrapper.V1_21_1;
 
     private enum VersionWrapper {
         V1_17("1.17", "v1_17"),
@@ -36,7 +36,8 @@ public final class MenuUtil {
         V1_20_4("1.20.4", "v1_20_3"),
         V1_20_5("1.20.5", "v1_20_4"),
         V1_20_6("1.20.6", "v1_20_4"),
-        V1_21("1.21", "v1_21");
+        V1_21("1.21", "v1_21"),
+        V1_21_1("1.21.1", "v1_21_1");
 
         private String version;
         private String packageName;
@@ -59,7 +60,7 @@ public final class MenuUtil {
                      .filter(versionWrapper -> versionWrapper.version.equalsIgnoreCase(version))
                      .toList();
 
-             return list.get(0);
+             return list.get(0) == null ? LATEST : list.get(0);
         }
     }
     static {
